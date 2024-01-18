@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+    if: github.event.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GH_TOKEN_FOR_CONVENTIONAL_CHANGELOG }}
+
+    #######################################################
+    ############## DETERMINE NEXT VERSION #################
+    #######################################################
+
+    # conventional-ch increments the patch version even when
+    # it skipped commiting due to empty changelog. In such a case,
+    # we have to retrieve the old (unchanged) version using our own means.
+    # https://github.com/conventional-changelog/standard-version/issues/730
+
+    - name: Read old version file
+      id: read-old-version
+      uses: CumulusDS/get-yaml-paths-action@v1.0.1
+      with:
+        file: gicha-version.yml
+        version: version
+    - name: Conventional changelog
+      id: conventional-ch
+      uses: TriPSs/conventional-changelog-action@v4.1.1
+      with:
+        github-token: ${{ secrets.GH_TOKEN_FOR_CONVENTIONAL_CHANGELOG }}
+        version-file: './gicha-version.yml'
+        input-file: './CHANGELOG.md'
+        git-message: 'release: {version}'
+        version-path: 'version'
+        skip-on-empty: 'true'
+        skip-version-file: 'false'
+        skip-commit: 'false'
+    - name: Read new version file
+      id: read-new-version
+      uses: CumulusDS/get-yaml-paths-action@v1.0.1
+      with:
+        file: gicha-version.yml
+        version: version
+    - name: Put correct version into GITHUB_ENV and into gicha-version.yml
+      run: |
+        if ${{ steps.conventional-ch.outputs.skipped == 'false' }}; then
+          echo "nxc_version=${{ steps.read-new-version.outputs.version }}" >> $GITHUB_ENV
+        else
+          echo "nxc_version=${{ steps.read-old-version.outputs.version }}" >> $GITHUB_ENV
+          git checkout -- gicha-version.yml
+        fi
+
+
+    #######################################################
+    ################ RELEASE TO PYPI ######################
+    #######################################################
+
+    - uses: actions/setup-python@v4
+      with:
+          python-version: 3.11
+    - name: Build and upload to PyPI
+      if: ${{ steps.conventional-ch.outputs.skipped == 'false' }}
+      run: |
+        pip install -r requirements.txt -r requirements-dev.txt
+        python setup.py sdist bdist_wheel
+        python -m twine upload dist/* -u __token__ -p ${{ secrets.TWINE_PASSWORD }}

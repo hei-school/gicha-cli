@@ -1,0 +1,16 @@
+{
+  "version": "2.0",
+  "app_name": "gicha",
+  "stages": {
+    "prod": {
+      "environment_variables": {
+        "USERNAME": "Lou BOGOSSE De PROD"
+      }
+    },
+    "preprod": {
+      "environment_variables": {
+        "USERNAME": "Lou BOGOSSE De PREPROD"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branch:
+      - '*'
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: rm -r test-* & python -m pytest -s -v --ignore=tests/oracles --ignore='test-*' --cov=gicha --cov-fail-under=85
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install black
+      - run: black --exclude tests/oracles --check .
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install flake8
+      - run: flake8 --extend-ignore F401,E501 gicha
