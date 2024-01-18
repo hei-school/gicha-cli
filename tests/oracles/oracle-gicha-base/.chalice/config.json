@@ -5,13 +5,13 @@
     "prod": {
       "lambda_memory_size": 256,
       "environment_variables": {
-        "USERNAME": "Lou BOGOSSE De PROD"
+        
       }
     },
     "preprod": {
       "lambda_memory_size": 256,
       "environment_variables": {
-        "USERNAME": "Lou BOGOSSE De PREPROD"
+        
       }
     }
   }

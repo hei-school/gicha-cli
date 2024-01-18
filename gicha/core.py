@@ -9,7 +9,7 @@ import os
 from gicha.myos import cd_then_exec
 
 GIT_URL = "https://github.com/hei-school/gicha"
-GIT_TAG_OR_COMMIT = "1ba33a3"
+GIT_TAG_OR_COMMIT = "7b0e172"
 
 
 def gen(
@@ -18,7 +18,8 @@ def gen(
     region="eu-west-3",
     custom_python_requirements=None,
     custom_python_requirements_dev=None,
-    custom_python_env_vars=None,
+    custom_python_env_vars_prod=None,
+    custom_python_env_vars_preprod=None,
     output_dir=None,
     pytest_min_coverage="0.8",
     memory=256,
@@ -40,7 +41,8 @@ def gen(
             region = conf["region"]
             custom_python_requirements = conf["custom_python_requirements"]
             custom_python_requirements_dev = conf["custom_python_requirements_dev"]
-            custom_python_env_vars = conf["custom_python_env_vars"]
+            custom_python_env_vars_prod = conf["custom_python_env_vars_prod"]
+            custom_python_env_vars_preprod = conf["custom_python_env_vars_preprod"]
             pytest_min_coverage = conf["pytest_min_coverage"]
             memory = int(conf["memory"])
 
@@ -84,10 +86,20 @@ def gen(
         tmp_dir, "<?python-requirements-dev>", custom_python_requirements_dev, exclude
     )
 
-    print_normal("custom_python_env_vars")
-    indent = "        "
-    python_env_vars = replace_with_file_content(
-        tmp_dir, "<?python-env-vars>", custom_python_env_vars, exclude, joiner=indent
+    print_normal("custom_python_env_vars_prod")
+    python_env_vars_prod = replace_with_file_content(
+        tmp_dir,
+        "<?env-vars-prod>",
+        custom_python_env_vars_prod,
+        exclude,
+    )
+
+    print_normal("custom_python_env_vars_preprod")
+    python_env_vars_preprod = replace_with_file_content(
+        tmp_dir,
+        "<?env-vars-preprod>",
+        custom_python_env_vars_preprod,
+        exclude,
     )
 
     print_normal("app_name")
@@ -105,7 +117,8 @@ def gen(
         region,
         python_requirements,
         python_requirements_dev,
-        python_env_vars,
+        python_env_vars_prod,
+        python_env_vars_preprod,
         pytest_min_coverage,
         memory,
     )
@@ -127,20 +140,23 @@ def save_conf(
     region,
     python_requirements,
     python_requirements_dev,
-    python_env_vars,
+    python_env_vars_prod,
+    python_env_vars_preprod,
     pytest_min_coverage,
     memory,
 ):
     custom_python_requirements_filename = "gicha-custom-python-requirements.txt"
     custom_python_requirements_dev_filename = "gicha-custom-python-requirements-dev.txt"
-    custom_python_env_vars_filename = "gicha-custom-python-env-vars.txt"
+    custom_python_env_vars_prod_filename = "gicha-custom-python-env-vars-prod.txt"
+    custom_python_env_vars_preprod_filename = "gicha-custom-python-env-vars-preprod.txt"
     conf = {
         "cli_version": get_version(),
         "app_name": app_name,
         "region": region,
         "custom_python_requirements": custom_python_requirements_filename,
         "custom_python_requirements_dev": custom_python_requirements_dev_filename,
-        "custom_python_env_vars": custom_python_env_vars_filename,
+        "custom_python_env_vars_prod": custom_python_env_vars_prod_filename,
+        "custom_python_env_vars_preprod": custom_python_env_vars_preprod_filename,
         "pytest_min_coverage": pytest_min_coverage,
         "memory": memory,
     }
@@ -159,12 +175,20 @@ def save_conf(
     ) as custom_python_requirements_dev_file:
         custom_python_requirements_dev_file.write(python_requirements_dev)
 
-    print_normal(custom_python_env_vars_filename)
+    print_normal(custom_python_env_vars_prod_filename)
     with open(
-        f"{tmp_dir}/{custom_python_env_vars_filename}", "w"
-    ) as custom_python_env_vars_file:
-        custom_python_env_vars_file.write(
-            "\n".join([s.strip() for s in python_env_vars.split("\n")])
+        f"{tmp_dir}/{custom_python_env_vars_prod_filename}", "w"
+    ) as custom_python_env_vars_prod_file:
+        custom_python_env_vars_prod_file.write(
+            "\n".join([s.strip() for s in python_env_vars_prod.split("\n")])
+        )
+
+    print_normal(custom_python_env_vars_preprod_filename)
+    with open(
+        f"{tmp_dir}/{custom_python_env_vars_preprod_filename}", "w"
+    ) as custom_python_env_vars_preprod_file:
+        custom_python_env_vars_preprod_file.write(
+            "\n".join([s.strip() for s in python_env_vars_preprod.split("\n")])
         )
 
 

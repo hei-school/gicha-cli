@@ -1,0 +1,2 @@
+"USERNAME": "Lou de PROD",
+"SOME_URL": "https://prod.url"
