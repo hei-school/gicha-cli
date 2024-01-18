@@ -34,6 +34,7 @@ def test_base():
     output_dir = "test-gicha-base"
     gicha.gen(app_name="gicha-base", output_dir=output_dir)
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-base"), output_dir)
+    oracle_tests_are_passing(output_dir)
 
 
 def test_all_params():
@@ -50,6 +51,7 @@ def test_all_params():
         output_dir=output_dir,
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)
+    oracle_tests_are_passing(output_dir)
 
 
 def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_gicha_conf():
@@ -93,12 +95,7 @@ def is_dir_superset_of(superset_dir, subset_dir):
 
 
 def oracle_tests_are_passing(oracle_dir):
-    if "Windows" in platform.system():
-        return True
-    gradlew_file = f"{oracle_dir}/gradlew"
-    os.system(f"chmod +x {gradlew_file}")
-
-    aws_env = "AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy AWS_REGION=dummy"
-    test_return_code = os.system(f"cd {oracle_dir} && {aws_env} ./gradlew test")
-
+    test_return_code = os.system(
+        f"cd {oracle_dir} && python -m pytest -s -v -c tests/pytest.ini --cov-fail-under=90"
+    )
     return test_return_code == 0
