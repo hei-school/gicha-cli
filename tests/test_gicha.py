@@ -39,7 +39,7 @@ def test_base():
 def test_all_params():
     output_dir = "test-gicha-all-params"
     gicha.gen(
-        app_name="gicha-base",
+        app_name="gicha-all-params",
         region="eu-central-1",
         memory=512,
         custom_python_env_vars_prod=oracle_rel_path("custom-python-env-vars-prod.txt"),

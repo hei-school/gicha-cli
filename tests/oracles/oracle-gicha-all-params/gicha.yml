@@ -1,4 +1,4 @@
-app_name: gicha-base
+app_name: gicha-all-params
 cli_version: 0.1.1
 custom_python_env_vars_preprod: gicha-custom-python-env-vars-preprod.txt
 custom_python_env_vars_prod: gicha-custom-python-env-vars-prod.txt

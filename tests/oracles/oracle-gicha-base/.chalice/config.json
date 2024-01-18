@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "app_name": "gicha",
+  "app_name": "gicha-base",
   "stages": {
     "prod": {
       "lambda_memory_size": 256,
