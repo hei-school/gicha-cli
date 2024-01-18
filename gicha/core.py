@@ -112,7 +112,8 @@ def gen(
     print_normal("gicha.yml")
 
     print_title("Format...")
-    cd_then_exec(tmp_dir, "format.bat", "./format.sh")
+    format_cmd = "pip install black && black --exclude tests/oracles --check ."
+    cd_then_exec(tmp_dir, format_cmd, format_cmd)
 
     print_title("Copy to output dir...")
     shutil.copytree(tmp_dir, output_dir, dirs_exist_ok=True)
