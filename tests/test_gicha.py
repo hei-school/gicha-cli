@@ -52,6 +52,21 @@ def test_all_params():
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)
 
 
+def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_gicha_conf():
+    oracle_dir = oracle_rel_path("oracle-gicha-all-params")
+    # do NOT create tmp_dir using with-as, as Python will prematurely rm it
+    tmp_dir = TemporaryDirectory()
+    oracle_dir_clone = shutil.copytree(oracle_dir, tmp_dir.name, dirs_exist_ok=True)
+
+    install_cmd = "pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
+    os.system("pip uninstall -y gicha && %s" % install_cmd)
+    gen_cmd = "python -m gicha --gicha-conf gicha.yml --output-dir=."
+    gen_cmd_return_code = cd_then_exec(oracle_dir_clone, gen_cmd, gen_cmd)
+
+    assert gen_cmd_return_code == 0
+    assert are_dir_equals(oracle_dir, oracle_dir_clone)
+
+
 def are_dir_equals(dir1, dir2):
     return is_dir_superset_of(dir1, dir2) and is_dir_superset_of(dir2, dir1)
 
