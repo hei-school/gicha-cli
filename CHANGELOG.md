@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/hei-school/gicha-cli/compare/v1.0.0...v1.0.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* --custom-python-requirements(-dev) now supported ([864c8af](https://github.com/hei-school/gicha-cli/commit/864c8af54a48c44149dac391dcb5f7fe705c7580))
+
+
+
 # [1.0.0](https://github.com/hei-school/gicha-cli/compare/v0.1.1...v1.0.0) (2024-01-18)
 
 
