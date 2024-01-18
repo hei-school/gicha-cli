@@ -47,6 +47,10 @@ def test_all_params():
         custom_python_env_vars_preprod=oracle_rel_path(
             "custom-python-env-vars-preprod.txt"
         ),
+        custom_python_requirements=oracle_rel_path("custom-python-requirements.txt"),
+        custom_python_requirements_dev=oracle_rel_path(
+            "custom-python-requirements-dev.txt"
+        ),
         pytest_min_coverage="80",
         output_dir=output_dir,
     )
