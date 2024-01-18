@@ -38,7 +38,9 @@ def test_base():
 
 def test_all_params():
     output_dir = "test-gicha-all-params"
-    gicha.gen(app_name="gicha-base", region="eu-central-1", output_dir=output_dir)
+    gicha.gen(
+        app_name="gicha-base", region="eu-central-1", memory=512, output_dir=output_dir
+    )
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)
 
 
