@@ -36,6 +36,12 @@ def test_base():
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-base"), output_dir)
 
 
+def test_all_params():
+    output_dir = "test-gicha-all-params"
+    gicha.gen(app_name="gicha-base", region="eu-central-1", output_dir=output_dir)
+    assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)
+
+
 def are_dir_equals(dir1, dir2):
     return is_dir_superset_of(dir1, dir2) and is_dir_superset_of(dir2, dir1)
 

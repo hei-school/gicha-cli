@@ -1,0 +1,3 @@
+.chalice/
+.coverage
+**/__pycache__/
