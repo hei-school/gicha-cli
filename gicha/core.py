@@ -9,7 +9,7 @@ import os
 from gicha.myos import cd_then_exec
 
 GIT_URL = "https://github.com/hei-school/gicha"
-GIT_TAG_OR_COMMIT = "8f109b3"
+GIT_TAG_OR_COMMIT = "1f57ea0"
 
 
 def gen(
@@ -21,7 +21,7 @@ def gen(
     custom_python_env_vars_prod=None,
     custom_python_env_vars_preprod=None,
     output_dir=None,
-    pytest_min_coverage="0.8",
+    pytest_min_coverage="90",
     memory=256,
 ):
     if gicha_conf is not None:

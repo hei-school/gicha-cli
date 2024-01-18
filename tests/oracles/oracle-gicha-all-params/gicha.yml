@@ -5,5 +5,5 @@ custom_python_env_vars_prod: gicha-custom-python-env-vars-prod.txt
 custom_python_requirements: gicha-custom-python-requirements.txt
 custom_python_requirements_dev: gicha-custom-python-requirements-dev.txt
 memory: 512
-pytest_min_coverage: '0.8'
+pytest_min_coverage: '80'
 region: eu-central-1

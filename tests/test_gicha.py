@@ -46,6 +46,7 @@ def test_all_params():
         custom_python_env_vars_preprod=oracle_rel_path(
             "custom-python-env-vars-preprod.txt"
         ),
+        pytest_min_coverage="80",
         output_dir=output_dir,
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)
