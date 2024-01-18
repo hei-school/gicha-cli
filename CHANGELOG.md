@@ -1,3 +1,26 @@
+# [1.0.0](https://github.com/hei-school/gicha-cli/compare/v0.1.1...v1.0.0) (2024-01-18)
+
+
+### Bug Fixes
+
+* --app-name now supported ([ad825e4](https://github.com/hei-school/gicha-cli/commit/ad825e4cda48a3c2cfd5ea513199f5398803dfc3))
+* --custom-python-env-vars-(pre)prod now supported ([f1393a4](https://github.com/hei-school/gicha-cli/commit/f1393a403f1999501000baae85a58083f77598ea))
+* --memory is now supported ([aa0f83e](https://github.com/hei-school/gicha-cli/commit/aa0f83e2212f154ee67aa1bfe1c2c4e1a75700f6))
+* --pytest-min-coverage now supported ([bd3d1e2](https://github.com/hei-school/gicha-cli/commit/bd3d1e24869f3c250538434dfd35cda2c6e0c367))
+* --region is now supported ([db7d32c](https://github.com/hei-school/gicha-cli/commit/db7d32c7e0ab5b7b9cd2bbf3d46271faabcd6661))
+
+
+### Documentation
+
+* usage in README.md ([838a182](https://github.com/hei-school/gicha-cli/commit/838a182fca814942da5acef038dbffa56139c254))
+
+
+### BREAKING CHANGES
+
+* ready for public usage
+
+
+
 ## [0.1.1](https://github.com/hei-school/gicha-cli/compare/v0.1.0...v0.1.1) (2024-01-18)
 
 
