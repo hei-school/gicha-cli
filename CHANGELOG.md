@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/hei-school/gicha-cli/compare/v1.1.1...v1.1.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* correctly set env variables path ([f23f648](https://github.com/hei-school/gicha-cli/commit/f23f6480929eac529227429f1db245e30e3fd715))
+
+
+
 ## [1.1.1](https://github.com/hei-school/gicha-cli/compare/v1.1.0...v1.1.1) (2024-01-19)
 
 
