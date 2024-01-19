@@ -1,5 +1,5 @@
 app_name: gicha-base
-cli_version: 1.0.1
+cli_version: 1.1.0
 custom_python_env_vars_preprod: gicha-custom-python-env-vars-preprod.txt
 custom_python_env_vars_prod: gicha-custom-python-env-vars-prod.txt
 custom_python_requirements: gicha-custom-python-requirements.txt

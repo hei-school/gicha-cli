@@ -2,7 +2,7 @@ import sys
 import boto3
 import re
 
-region = eu-central-1
+region = 'eu-central-1'
 ssm_client = boto3.client('ssm', region_name=region)
 
 def get_ssm_parameter(parameter_name):
