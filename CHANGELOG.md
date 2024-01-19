@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/hei-school/gicha-cli/compare/v1.1.0...v1.1.1) (2024-01-19)
+
+
+### Bug Fixes
+
+* put single quotes in region value in ssm resolver script ([a3ba1ff](https://github.com/hei-school/gicha-cli/commit/a3ba1ff9902d27f0357da14bf871babec214927c))
+
+
+
 # [1.1.0](https://github.com/hei-school/gicha-cli/compare/v1.0.1...v1.1.0) (2024-01-19)
 
 
