@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/hei-school/gicha-cli/compare/v1.1.2...v1.1.3) (2024-01-19)
+
+
+### Bug Fixes
+
+* reference config.json instead of gicha env vars file into ssm resolver scripts ([3cf1854](https://github.com/hei-school/gicha-cli/commit/3cf1854445b53df794f90b3a5cd12b3dc1c7ab80))
+
+
+
 ## [1.1.2](https://github.com/hei-school/gicha-cli/compare/v1.1.1...v1.1.2) (2024-01-19)
 
 
