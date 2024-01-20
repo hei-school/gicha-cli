@@ -52,6 +52,7 @@ def test_all_params():
             "custom-python-requirements-dev.txt"
         ),
         pytest_min_coverage="80",
+        with_function_url="true",
         output_dir=output_dir,
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-gicha-all-params"), output_dir)

@@ -9,7 +9,7 @@ import os
 from gicha.myos import cd_then_exec
 
 GIT_URL = "https://github.com/hei-school/gicha"
-GIT_TAG_OR_COMMIT = "c2c07ed"
+GIT_TAG_OR_COMMIT = "1de297b2a5e"
 
 
 def gen(
@@ -23,6 +23,7 @@ def gen(
     output_dir=None,
     pytest_min_coverage="90",
     memory=256,
+    with_function_url="false",
 ):
     if gicha_conf is not None:
         with open(gicha_conf, "r") as conf_strem:
@@ -45,6 +46,7 @@ def gen(
             custom_python_env_vars_preprod = conf["custom_python_env_vars_preprod"]
             pytest_min_coverage = conf["pytest_min_coverage"]
             memory = int(conf["memory"])
+            with_function_url = conf["with_function_url"]
 
     if app_name is None:
         raise Exception(
@@ -110,6 +112,12 @@ def gen(
         tmp_dir, "<?pytest-min-coverage>", str(pytest_min_coverage), exclude
     )
 
+    print_normal("with_function_url")
+    if with_function_url == "true":
+        print_warn(
+            "--with-function-url has to be done manually for now: follow README instructions"
+        )
+
     print_title("Save conf...")
     save_conf(
         tmp_dir,
@@ -121,6 +129,7 @@ def gen(
         python_env_vars_preprod,
         pytest_min_coverage,
         memory,
+        with_function_url,
     )
     print_normal("gicha.yml")
 
@@ -144,6 +153,7 @@ def save_conf(
     python_env_vars_preprod,
     pytest_min_coverage,
     memory,
+    with_function_url,
 ):
     custom_python_requirements_filename = "gicha-custom-python-requirements.txt"
     custom_python_requirements_dev_filename = "gicha-custom-python-requirements-dev.txt"
@@ -159,6 +169,7 @@ def save_conf(
         "custom_python_env_vars_preprod": custom_python_env_vars_preprod_filename,
         "pytest_min_coverage": pytest_min_coverage,
         "memory": memory,
+        "with_function_url": with_function_url,
     }
     with open(tmp_dir + "/gicha.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)

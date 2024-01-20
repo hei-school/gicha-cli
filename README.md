@@ -37,3 +37,16 @@ pip install gicha --upgrade
 cd folder-already-created
 python -m gicha --gicha-conf=gicha.yml --output-dir=.
 ```
+
+### Activate Function URL
+
+If your calls last longer than 30 seconds (but less than 15 minutes),
+then you need to do the invocations through [Function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html).
+
+1. Call Gicha `--with-function-url=true`. This will just save the configuration in `gicha.yml` for now.
+2. Activate Function URL. You can use either AWS Console or CLI.
+3. Set handler to app.minimalistic_handler. You can use either AWS Console or CLI.
+
+```diff
+- TODO: automate step 2 and 3
+``````

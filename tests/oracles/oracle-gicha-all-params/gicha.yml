@@ -7,3 +7,4 @@ custom_python_requirements_dev: gicha-custom-python-requirements-dev.txt
 memory: 512
 pytest_min_coverage: '80'
 region: eu-central-1
+with_function_url: 'true'
