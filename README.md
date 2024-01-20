@@ -49,4 +49,10 @@ then you need to do the invocations through [Function URL](https://docs.aws.amaz
 
 ```diff
 - TODO: automate step 2 and 3
-``````
+```
+
+```diff
+- When calls are done through Function URL,
+- then Chalice routing with @app.route does __NOT__ work:
+- route manually!
+```
