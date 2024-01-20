@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/hei-school/gicha-cli/compare/v1.1.3...v1.2.0) (2024-01-20)
+
+
+### Bug Fixes
+
+* hello works for None Username ([4aa24f3](https://github.com/hei-school/gicha-cli/commit/4aa24f379a5e0468eea06ccb68f289076f626b78))
+
+
+### Features
+
+* --with-function-url but with manual instructions ([58b6d80](https://github.com/hei-school/gicha-cli/commit/58b6d80874a60591a1a40023ec540af0cc5b06ad))
+
+
+
 ## [1.1.3](https://github.com/hei-school/gicha-cli/compare/v1.1.2...v1.1.3) (2024-01-19)
 
 
